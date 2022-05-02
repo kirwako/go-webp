@@ -82,6 +82,7 @@ go-webp change=false
 go-webp remove=false change=false
 ```
 
-# To support me
+###### This package costs me time to make and maintain every time.
 
-[Buy me a coffee](https://www.buymeacoffee.com/imranbaali)
+[I am very happy about every coffee!](https://www.buymeacoffee.com/imranbaali)
+
