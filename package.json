@@ -1,20 +1,40 @@
 {
-	"name": "imgtowebp",
+	"name": "go-webp",
 	"version": "1.0.0",
-	"description": "",
+	"description": "go-webp is a tool that helps develop convert all images (.png,.jpg and .jpeg) to webp image format by just one simple command line",
 	"main": "index.mjs",
 	"dependencies": {
 		"imagemin": "^8.0.1",
 		"imagemin-webp": "^7.0.0"
 	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/kirwa-KO/go-webp"
+	  },
+	  "keywords": [
+		"webp",
+		"imgtowebp",
+		"webp-converter",
+		"webp-convert",
+		"webp-converter-cli",
+		"webp-convert-cli",
+		"webp-converter-cli-go",
+		"go-webp",
+		"seo",
+		"optimization",
+		"image",
+		"images",
+		"image-optimization",
+		"image-optimization-cli"
+	],
 	"devDependencies": {},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"author": "kirwa-KO",
-	"license": "ISC",
+	"license": "MIT",
 	"type": "module",
 	"bin": {
-		"imgs-to-webp": "index.mjs"
+		"go-webp": "index.mjs"
 	}
 }
