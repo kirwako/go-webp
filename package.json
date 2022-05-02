@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "colors": "^1.4.0",
     "imagemin": "^8.0.1",
     "imagemin-webp": "^7.0.0"
   },
