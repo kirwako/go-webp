@@ -7,9 +7,12 @@ const RESET_BOLD = "\u001b[22m"
 const BOLD = "\u001b[1m"
 const FG_GREEN = "\x1b[32m";
 const RESET_COLOR = "\x1b[0m";
+const FG_RED = "\x1b[31m";
 
 const BOLD_FG_GREEN = `${BOLD}${FG_GREEN}`;
 const RESET_BOLD_FG_GREEN = `${RESET_BOLD}${RESET_COLOR}`;
+const BOLD_FG_RED = `${BOLD}${FG_RED}`;
+const RESET_BOLD_FG_RED = `${RESET_BOLD}${RESET_COLOR}`;
 
 const folders_to_excld = [
 	"node_modules",
@@ -50,7 +53,11 @@ for (let i = 0;i < allDirectories.length; i++) {
 	.then((webp_files) => {
 		webp_files.forEach((webp_file) => {
 			const spaces = " ".repeat(50 - webp_file.sourcePath.length);
-			console.log(`${BOLD_FG_GREEN}[Converting to webp]${RESET_BOLD_FG_GREEN}  ${webp_file.sourcePath} ${spaces} ${BOLD_FG_GREEN}Success ✅${RESET_BOLD_FG_GREEN}`);
+			console.log(`${BOLD_FG_GREEN}[Converting  to webp]${RESET_BOLD_FG_GREEN}  ${webp_file.sourcePath} ${spaces} ${BOLD_FG_GREEN}Success ✅${RESET_BOLD_FG_GREEN}`);
+			
+			// remove the old image file
+			fs.unlinkSync(webp_file.sourcePath);
+			console.log(`${BOLD_FG_RED}[removing old format]${RESET_BOLD_FG_RED}  ${webp_file.sourcePath} ${spaces} ${BOLD_FG_RED}Delete ❌${RESET_BOLD_FG_RED}`);
 
 			// get all files in the directory
 			for (let i = 0; i < allDirectories.length; i++) {
