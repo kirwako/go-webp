@@ -1,1 +1,1 @@
-# convert-all-imgs-to-webp
+# imgs-to-webp
