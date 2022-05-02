@@ -83,6 +83,7 @@ go-webp remove=false change=false
 ```
 
 #### This package costs me time to make and maintain every time.
+[I am very happy about every coffee!]
 
-[I am very happy about every coffee!](https://www.buymeacoffee.com/imranbaali)
+[buy me a coffee](https://www.buymeacoffee.com/imranbaali)
 
