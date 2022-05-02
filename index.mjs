@@ -1,13 +1,29 @@
+#!/usr/bin/env node
+
 import fs from "fs";
 import path from "path";
 import imagemin from "imagemin";
 import imageminWebp from "imagemin-webp";
 
+let remove_old_format_files = true;
+let change_imgs_name_in_files = true;
+
+for (let i = 2;i < process.argv.length;i++) {
+	let splited_with_equal = process.argv[i].split("=");
+	if (splited_with_equal.length < 2)
+		continue ;
+	if (splited_with_equal[0] === "remove" && splited_with_equal[1] === "false")
+		remove_old_format_files = false;
+	
+	if (splited_with_equal[0] === "change" && splited_with_equal[1] === "false")
+		change_imgs_name_in_files = false;
+}
+
 const RESET_BOLD = "\u001b[22m"
 const BOLD = "\u001b[1m"
 const FG_GREEN = "\x1b[32m";
 const RESET_COLOR = "\x1b[0m";
-const FG_RED = "\x1b[31m";
+const FG_RED = "\x1b[34m";
 
 const BOLD_FG_GREEN = `${BOLD}${FG_GREEN}`;
 const RESET_BOLD_FG_GREEN = `${RESET_BOLD}${RESET_COLOR}`;
@@ -53,31 +69,35 @@ for (let i = 0;i < allDirectories.length; i++) {
 	.then((webp_files) => {
 		webp_files.forEach((webp_file) => {
 			const spaces = " ".repeat(50 - webp_file.sourcePath.length);
-			console.log(`${BOLD_FG_GREEN}[Converting  to webp]${RESET_BOLD_FG_GREEN}  ${webp_file.sourcePath} ${spaces} ${BOLD_FG_GREEN}Success ✅${RESET_BOLD_FG_GREEN}`);
+			console.log(`${BOLD_FG_GREEN}[Converting to webp ]${RESET_BOLD_FG_GREEN}  ${webp_file.sourcePath} ${spaces} ${BOLD_FG_GREEN}Success ✅${RESET_BOLD_FG_GREEN}`);
 			
 			// remove the old image file
-			fs.unlinkSync(webp_file.sourcePath);
-			console.log(`${BOLD_FG_RED}[removing old format]${RESET_BOLD_FG_RED}  ${webp_file.sourcePath} ${spaces} ${BOLD_FG_RED}Delete ❌${RESET_BOLD_FG_RED}`);
+			if (remove_old_format_files === true) {
+				fs.unlinkSync(webp_file.sourcePath);
+				console.log(`${BOLD_FG_RED}[deleting old format]${RESET_BOLD_FG_RED}  ${webp_file.sourcePath} ${spaces} ${BOLD_FG_RED}Success 🚀${RESET_BOLD_FG_RED}`);
+			}
 
 			// get all files in the directory
-			for (let i = 0; i < allDirectories.length; i++) {
-				// get all files of directory allDirectories[i]
-				fs.readdirSync(allDirectories[i]).forEach((file) => {
-
-					// first we check if the file is not a directory
-					// exclude files with extension
-					if (fs.statSync(`${allDirectories[i]}/${file}`).isDirectory() === true)
-						return ;
-					
-					if (isAllowdedFileExtention(file) === false) {
-						return ;
-					}
-
-					// change the image name in file to webp
-					const content_file = fs.readFileSync(`${allDirectories[i]}/${file}`, "utf8", (err, data) => { if (err) console.log(`Error =======> [${err}]`); });
-					const changed_content = content_file.replace(new RegExp("\\b" + getFileName(webp_file.sourcePath) + "\\b", 'g'), getFileName(webp_file.destinationPath));
-					fs.writeFileSync(`${allDirectories[i]}/${file}`, changed_content, "utf8", (err) => { if (err) console.log(`Error =======> [${err}]`); } );
-				});
+			if (change_imgs_name_in_files === true) {
+				for (let i = 0; i < allDirectories.length; i++) {
+					// get all files of directory allDirectories[i]
+					fs.readdirSync(allDirectories[i]).forEach((file) => {
+	
+						// first we check if the file is not a directory
+						// exclude files with extension
+						if (fs.statSync(`${allDirectories[i]}/${file}`).isDirectory() === true)
+							return ;
+						
+						if (isAllowdedFileExtention(file) === false) {
+							return ;
+						}
+	
+						// change the image name in file to webp
+						const content_file = fs.readFileSync(`${allDirectories[i]}/${file}`, "utf8", (err, data) => { if (err) console.log(`Error =======> [${err}]`); });
+						const changed_content = content_file.replace(new RegExp("\\b" + getFileName(webp_file.sourcePath) + "\\b", 'g'), getFileName(webp_file.destinationPath));
+						fs.writeFileSync(`${allDirectories[i]}/${file}`, changed_content, "utf8", (err) => { if (err) console.log(`Error =======> [${err}]`); } );
+					});
+				}
 			}
 		});
 	})
