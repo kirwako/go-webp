@@ -5,15 +5,15 @@ import path from "path";
 import imagemin from "imagemin";
 import imageminWebp from "imagemin-webp";
 
-let remove_old_format_files = true;
+let remove_old_format_files = false;
 let change_imgs_name_in_files = true;
 
 for (let i = 2;i < process.argv.length;i++) {
 	let splited_with_equal = process.argv[i].split("=");
 	if (splited_with_equal.length < 2)
 		continue ;
-	if (splited_with_equal[0] === "remove" && splited_with_equal[1] === "false")
-		remove_old_format_files = false;
+	if (splited_with_equal[0] === "remove" && splited_with_equal[1] === "true")
+		remove_old_format_files = true;
 	
 	if (splited_with_equal[0] === "change" && splited_with_equal[1] === "false")
 		change_imgs_name_in_files = false;

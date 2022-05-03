@@ -47,7 +47,7 @@ With a local installation, go-webp will not be available in your system path or 
 	},
 	"scripts": {
 		"...": "...",
-		"webp": "go-webp"
+		"webp": "go-webp remove=true change=true"
 	}
 }
 ```
@@ -60,16 +60,16 @@ npm run webp # or using yarn: yarn run webp
 
 # Usage
 
-By default go-webp remove old images format (.png, .jpg, .jpeg) and change images names in files where you use its
+By default go-webp change images names in files where you use its but not remove old images format (.png, .jpg, .jpeg) and
 
 ```bash
 go-webp
 ```
 
 For CLI options
-1. use the `remove=false` argument to not remove old images format (.png, .jpg, .jpeg)
+1. use the `remove=true` argument to remove old images format (.png, .jpg, .jpeg)
 ```bash
-go-webp remove=false
+go-webp remove=true
 ```
 
 2. use the `change=false` argument to not change images names in files where you use its
@@ -77,9 +77,9 @@ go-webp remove=false
 go-webp change=false
 ```
 
-3. you can also combine them `remove=false change=false` for just convert images format to webp [no remove, no change]
+3. you can also combine them `remove=true change=true` to remove old images format (.png, .jpg, .jpeg) and change images names in files where you use its
 ```bash
-go-webp remove=false change=false
+go-webp remove=true change=true
 ```
 
 #### This package costs me time to make and maintain every time.
