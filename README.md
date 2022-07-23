@@ -5,7 +5,11 @@
 # go-webp
 
 go-webp is a tool that helps develop convert all images (.png,.jpg and .jpeg) to webp image format by just one simple command line
-
+  
+  [![NPM Version][npm-version-image]][npm-url]
+  [![NPM Install Size][npm-install-size-image]][npm-install-size-url]
+  [![NPM Downloads][npm-downloads-image]][npm-downloads-url]
+  
 ## why use webp image format
 1. provides superior lossless and lossy compression for images on the web.
 2. create smaller, richer images that make the web faster
@@ -85,5 +89,12 @@ go-webp remove=true change=true
 #### This package costs me time to make and maintain every time.
 [I am very 😀 about every coffee!]
 
-[buy me a coffee ☕](https://www.buymeacoffee.com/imranbaali)
+<a href="https://www.buymeacoffee.com/imranbaali" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+
+[npm-downloads-image]: https://badgen.net/npm/dm/go-webp
+[npm-downloads-url]: https://npmcharts.com/compare/go-webp?minimal=true
+[npm-install-size-image]: https://badgen.net/packagephobia/install/go-webp
+[npm-install-size-url]: https://packagephobia.com/result?p=go-webp
+[npm-url]: https://www.npmjs.com/package/go-webp
+[npm-version-image]: https://badgen.net/npm/v/go-webp
 
