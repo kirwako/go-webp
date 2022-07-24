@@ -1,11 +1,11 @@
 {
 	"name": "go-webp",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "go-webp is a tool that helps develop convert all images (.png,.jpg and .jpeg) to webp image format by just one simple command line",
 	"main": "index.mjs",
 	"dependencies": {
 		"imagemin-webp": "^7.0.0",
-		"imageminimize": "^0.0.2"
+		"imageminimize": "^0.0.4"
 	},
 	"repository": {
 		"type": "git",
