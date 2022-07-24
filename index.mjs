@@ -2,7 +2,7 @@
 
 import fs from "fs";
 import path from "path";
-import imagemin from "imagemin";
+import imageminimize from "imageminimize";
 import imageminWebp from "imagemin-webp";
 
 let remove_old_format_files = false;
@@ -60,7 +60,7 @@ const extention_to_exclude = [
 var allDirectories = getDirectoriesRecursive(".");
 
 for (let i = 0;i < allDirectories.length; i++) {
-	imagemin([allDirectories[i] + "/*.{jpg,png,jpeg}"], {
+	imageminimize([allDirectories[i] + "/*.{jpg,png,jpeg}"], {
 		destination: allDirectories[i],
 		plugins: [
 			imageminWebp({}),

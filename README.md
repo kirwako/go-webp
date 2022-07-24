@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/kirwa-KO/go-webp/blob/main/go-webp-logo.png" alt="go-webp Logo">
+  <img src="https://github.com/kirwa-KO/go-webp/blob/main/go-webp-logo.webp" alt="go-webp Logo">
 </p>
 
 # go-webp
