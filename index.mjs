@@ -109,6 +109,7 @@ for (let i = 0;i < allDirectories.length; i++) {
 			}
 		});
 	})
+	.catch(err => console.log(err))
 }
 
 function getFileName(filepath) {
