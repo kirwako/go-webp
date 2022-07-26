@@ -68,13 +68,21 @@ for (let i = 0;i < allDirectories.length; i++) {
 	})
 	.then((webp_files) => {
 		webp_files.forEach((webp_file) => {
-			const spaces = " ".repeat(50 - webp_file.sourcePath.length);
-			console.log(`${BOLD_FG_GREEN}[Converting to webp ]${RESET_BOLD_FG_GREEN}  ${webp_file.sourcePath} ${spaces} ${BOLD_FG_GREEN}Success ✅${RESET_BOLD_FG_GREEN}`);
+			let count = 50 - webp_file.sourcePath.length
+			//? display just the 27 first charachters
+			count = count  < 0 ? 20 : count;
+			const spaces = " ".repeat(count);
+			let webpFileSourcePath = webp_file.sourcePath
+			if (count == 20){
+				webpFileSourcePath = webpFileSourcePath.substr(0, 27)
+				webpFileSourcePath += '...'
+			}
+			console.log(`${BOLD_FG_GREEN}[Converting to webp ]${RESET_BOLD_FG_GREEN}  ${webpFileSourcePath} ${spaces} ${BOLD_FG_GREEN}Success ✅${RESET_BOLD_FG_GREEN}`);
 			
 			// remove the old image file
 			if (remove_old_format_files === true) {
 				fs.unlinkSync(webp_file.sourcePath);
-				console.log(`${BOLD_FG_RED}[deleting old format]${RESET_BOLD_FG_RED}  ${webp_file.sourcePath} ${spaces} ${BOLD_FG_RED}Success 🚀${RESET_BOLD_FG_RED}`);
+				console.log(`${BOLD_FG_RED}[deleting old format]${RESET_BOLD_FG_RED}  ${webpFileSourcePath} ${spaces} ${BOLD_FG_RED}Success 🚀${RESET_BOLD_FG_RED}`);
 			}
 
 			// get all files in the directory
