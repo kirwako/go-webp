@@ -85,6 +85,32 @@ go-webp change=false
 ```bash
 go-webp remove=true change=true
 ```
+
+4. use the `excludeFolders="public,api"` argument to exclude folders from convertion
+```bash
+go-webp excludeFolders="public,api"
+```
+
+5. use the `excludeFiles="logo.png,favicon.ico,thumbnail.jpeg"` argument to exclude files from convertion
+```bash
+go-webp excludeFiles="logo.png,favicon.ico,thumbnail.jpeg"
+```
+
+## Bonus For React Developers: use exclude files for logo192.png, logo512.png, and favicon.ico
+```json
+{
+	"name": "...",
+	"version": "0.1.0",
+	"dependencies": {
+		"...":"..."
+	},
+	"scripts": {
+		"...": "...",
+		"webp": "go-webp remove=true change=true excludeFiles=\"logo192.png,logo512.png,favicon.ico\""
+	}
+}
+```
+
 ## Support
 #### This package costs me time to make and maintain every time.
 [I am very 😀 about every coffee!]

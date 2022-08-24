@@ -7,6 +7,8 @@ import imageminWebp from "imagemin-webp";
 
 let remove_old_format_files = false;
 let change_imgs_name_in_files = true;
+let user_folders_to_exclude = [];
+let user_files_to_exclude = [];
 
 for (let i = 2;i < process.argv.length;i++) {
 	let splited_with_equal = process.argv[i].split("=");
@@ -15,8 +17,20 @@ for (let i = 2;i < process.argv.length;i++) {
 	if (splited_with_equal[0] === "remove" && splited_with_equal[1] === "true")
 		remove_old_format_files = true;
 	
-	if (splited_with_equal[0] === "change" && splited_with_equal[1] === "false")
+	else if (splited_with_equal[0] === "change" && splited_with_equal[1] === "false")
 		change_imgs_name_in_files = false;
+	else if (splited_with_equal[0] === "excludeFolders") {
+		user_folders_to_exclude = splited_with_equal[1].split(",");
+		// trim spaces and remove empty strings
+		user_folders_to_exclude = user_folders_to_exclude.map((folder) => folder.trim());
+		user_folders_to_exclude = user_folders_to_exclude.filter((folder) => folder !== "");
+	}
+	else if (splited_with_equal[0] === "excludeFiles") {
+		user_files_to_exclude = splited_with_equal[1].split(",");
+		// trim spaces and remove empty strings
+		user_files_to_exclude = user_files_to_exclude.map((file) => file.trim());
+		user_files_to_exclude = user_files_to_exclude.filter((file) => file !== "");
+	}
 }
 
 const RESET_BOLD = "\u001b[22m"
@@ -46,6 +60,7 @@ const folders_to_excld = [
 	"__test__",
 	"__testdata__",
 	"__testfixtures__",
+	...user_folders_to_exclude,
 ];
 
 const extention_to_exclude = [
@@ -61,6 +76,7 @@ var allDirectories = getDirectoriesRecursive(".");
 
 for (let i = 0;i < allDirectories.length; i++) {
 	imageminimize([allDirectories[i] + "/*.{jpg,png,jpeg}"], {
+		excludeFiles: user_files_to_exclude,
 		destination: allDirectories[i],
 		plugins: [
 			imageminWebp({}),
